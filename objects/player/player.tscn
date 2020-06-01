@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://objects/player/asset/myboy.png" type="Texture" id=1]
+[ext_resource path="res://objects/player/scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://objects/player/scripts/fsm.gd" type="Script" id=3]
+[ext_resource path="res://objects/player/scripts/controls.gd" type="Script" id=5]
+[ext_resource path="res://objects/player/scripts/idle.gd" type="Script" id=6]
+[ext_resource path="res://objects/player/scripts/run.gd" type="Script" id=7]
+[ext_resource path="res://objects/player/scripts/jump.gd" type="Script" id=8]
+[ext_resource path="res://objects/player/scripts/die.gd" type="Script" id=9]
+[ext_resource path="res://objects/player/scripts/attack.gd" type="Script" id=10]
+[ext_resource path="res://objects/player/scripts/slide.gd" type="Script" id=11]
+[ext_resource path="res://objects/player/scripts/wall_jump.gd" type="Script" id=12]
+[ext_resource path="res://objects/player/scripts/fall.gd" type="Script" id=13]
+[ext_resource path="res://objects/player/scripts/camera.gd" type="Script" id=14]
+[ext_resource path="res://objects/player/scripts/swim.gd" type="Script" id=15]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 40.0
+height = 70.0
+
+[node name="player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2( 2, -74 )
+shape = SubResource( 3 )
+
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -50, -160 )
+vframes = 5
+hframes = 10
+frame = 40
+
+[node name="anim" type="AnimationPlayer" parent="."]
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+
+[node name="run" type="Node" parent="fsm"]
+script = ExtResource( 7 )
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 8 )
+
+[node name="die" type="Node" parent="fsm"]
+script = ExtResource( 9 )
+
+[node name="attack" type="Node" parent="fsm"]
+script = ExtResource( 10 )
+
+[node name="wall_jump" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+
+[node name="slide" type="Node" parent="fsm"]
+script = ExtResource( 11 )
+
+[node name="fall" type="Node" parent="fsm"]
+script = ExtResource( 13 )
+
+[node name="swim" type="Node" parent="fsm"]
+script = ExtResource( 15 )
+
+[node name="controls" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource( 14 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -30.0
+margin_top = -171.5
+margin_right = 27.0
+margin_bottom = -147.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2( -37, -73.5 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2( 40.5, -73 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="down" type="RayCast2D" parent="."]
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 0, 10 )
