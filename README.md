@@ -1,3 +1,15 @@
+#godot
+
+This foler contains a shell script godot.sh
+
+to use it type the following commands
+
+chmod +x godot.sh
+./godot.sh  <projectname>
+
+this will create an organised godot project with directories and a README file
+
+
 This is a godot project for creating a kinematic character finite state machine player template 
  
 the player does not contain animation 
