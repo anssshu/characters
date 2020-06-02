@@ -34,12 +34,12 @@ func transition_logic(delta):
 		return state_obj.transition_logic(delta)
 	
 func on_enter(new_state,old_state):
-	var state_obj = states.get(state)
+	var state_obj = states.get(new_state)
 	if state_obj :
 		state_obj.on_enter(new_state,old_state)
 		get_node("../Label").set_text(str(state))
 func on_exit(old_state,new_state):
-	var state_obj = states.get(state)
+	var state_obj = states.get(old_state)
 	if state_obj :
 		state_obj.on_exit(old_state,new_state)
 	
