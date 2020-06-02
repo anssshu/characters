@@ -14,9 +14,11 @@ mkdir $project/doc
 mkdir $project/game
 mkdir $project/game/objects
 mkdir $project/game/levels
+mkdir $project/game/levels/level0
 mkdir $project/game/maps
+mkdir $project/game/maps/map0
 mkdir $project/game/asset
-mkdir $project/game/game_state
+mkdir $project/game/menu_scenes
 mkdir $project/game/objects/player
 mkdir $project/game/objects/characters
 mkdir $project/game/objects/uis
@@ -31,7 +33,6 @@ mkdir $project/game/asset/textures/backgrounds
 mkdir $project/game/asset/textures/tiles
 mkdir $project/game/asset/textures/atlas
 touch $project/game/project.godot
-touch $project/game/game.tscn
 echo "#Gotot Project $project" > $project/README.md
 echo " $project godot project has been successfully created"
 tree $project 
