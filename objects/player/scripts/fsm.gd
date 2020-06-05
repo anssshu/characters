@@ -11,8 +11,7 @@ func _ready():
 	var children  = self.get_children()
 	for child in children:
 		states[child.name] = child
-	state = "fall"	
-	get_node("../Label").set_text(str(state))
+	
 	
 
 func update(delta):
@@ -37,7 +36,7 @@ func on_enter(new_state,old_state):
 	var state_obj = states.get(new_state)
 	if state_obj :
 		state_obj.on_enter(new_state,old_state)
-		get_node("../Label").set_text(str(state))
+		
 func on_exit(old_state,new_state):
 	var state_obj = states.get(old_state)
 	if state_obj :

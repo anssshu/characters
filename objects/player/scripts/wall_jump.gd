@@ -5,12 +5,12 @@ onready var player = get_parent().get_parent()
 func on_enter(new_state,old_state):
 	if player.on_left_wall:
 		player.velocity = player.WALLJUMPSPEED
-		player.right = true
-		player.left = false
+		player.face_right = true
+		player.face_left = false
 	elif player.on_right_wall:
 		player.velocity = Vector2(-1*player.WALLJUMPSPEED.x,player.WALLJUMPSPEED.y)
-		player.right = false
-		player.left = true
+		player.face_right = false
+		player.face_left = true
 	else:
 		pass
 func on_exit(old_state,new_state):

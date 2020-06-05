@@ -19,87 +19,30 @@ var on_wall = false
 var on_left_wall = false
 var on_right_wall = false
 var in_water = false
-var left = false
-var right = true
+
+var face_left = false
+var face_right = true
 
 onready var controls = $controls
-onready var motion = $motion
 onready var fsm = $fsm
+onready var motion = $motion
+onready var updater = $updater
+onready var collision = $collision
+
+
+onready var label = $label
+
 
 func _ready():
-	#connect my_signal for collision detection
-	self.connect("my_signal",self,"on_collision")
-	#initialize connection for collision detection
-
+	fsm.set_state("fall")
+	label.set_text("fall")
+	
 func _physics_process(delta):
-	#update controls for inputs
+	
 	controls.update(delta)
-	
-	calculate_sprite_facing()
-	check_ray_cast()	
-	check_collision(delta)
-	
-	# update the finite state machine
 	fsm.update(delta)
-	
-	#logic for death
-	if health == 0:
-		fsm.set_state("die")
-	
-	# motion logic
-	velocity.y += delta * GRAVITY	
-	velocity =  move_and_slide(velocity, n)
+	motion.update(delta)
+	updater.update(delta)
 	
 	
 	
-func check_ray_cast():
-	#determine object is on ground or not on the basis of ray collision
-	if $down.is_colliding():
-		on_ground = true
-	else:
-		on_ground = false
-		
-	if $left.is_colliding():
-		on_left_wall = true
-	else:
-		on_left_wall = false
-	if $right.is_colliding():
-		on_right_wall = true
-	else:
-		on_right_wall = false
-		
-	if on_left_wall or on_right_wall:
-		on_wall = true
-	else:
-		on_wall = false
-func calculate_sprite_facing():
-	if  controls.left:
-		left = true
-		right = false
-	elif controls.right:
-		right = true
-		left = false
-	else:
-		pass
-		
-	if  left:
-		$sprite.scale.x = -1
-	elif right:
-		$sprite.scale.x = 1
-	else:
-		pass
-func check_collision(delta):
-	#check for collision
-	var c = move_and_collide(velocity*delta) #it holds collision data
-	if c:
-		emit_signal("my_signal",c)
-		#calculate collision normal
-		n = c.normal
-		
-		
-		#print("collision:",c)
-	else:
-		n=Vector2(0,-1)	
-func on_collision(c):
-	#print(c.normal)	
-	pass
