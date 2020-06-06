@@ -1,4 +1,4 @@
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 
@@ -7,7 +7,7 @@ func on_enter(new_state,old_state):
 	player.velocity.y= 0
 	player.anim.play("wall_slide")
 func on_exit(old_state,new_state):
-	player.GRAVITY = 1200
+	player.GRAVITY = -player.JUMPSPEED/player.jump_time
 func state_logic(delta):
 	#player.velocity.y= 0
 	pass

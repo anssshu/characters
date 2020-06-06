@@ -1,5 +1,5 @@
 # RUN STATE
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 

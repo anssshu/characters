@@ -1,4 +1,4 @@
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 onready var left_hand = player.get_node("sprite/body/left_hand")
@@ -32,7 +32,10 @@ func transition_logic(delta):
 	if 	player.controls.attack == false:
 		return player.fsm.previous_state
 		
-	#attack to slide
-	if abs(player.velocity.x) > 200 and player.controls.down:
-		return "slide"	
+	#attack to jump attack
+	if player.controls.jump:
+		return "jump_attack"
+	#attack to duck_attack
+	if player.controls.down:
+		return "duck_attack"
 	return null	

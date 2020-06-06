@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://objects/player/scripts/state.gd"
+"path": "res://objects/char/scripts/state.gd"
 } ]
 _global_script_class_icons={
 "Player": "",

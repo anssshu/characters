@@ -1,5 +1,5 @@
 #duck attack
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 onready var left_hand = player.get_node("sprite/body/left_hand")

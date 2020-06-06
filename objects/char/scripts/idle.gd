@@ -1,5 +1,5 @@
 # IDLE STATE
-extends State
+extends Node
 
 
 onready var player = get_parent().get_parent()
@@ -17,7 +17,5 @@ func transition_logic(delta):
 	#idle to jump
 	if player.on_ground and player.controls.jump :
 		return "jump"
-	#idle to attack
-	if player.controls.attack :
-		return "attack"
+	
 	return null	

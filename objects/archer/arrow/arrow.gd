@@ -19,9 +19,12 @@ func _physics_process(dt):
 	#print(v.x)
 
 func _on_arrow_body_entered(body):
-	if body.name != "player":
+	var family = body.get("family")
+	
+	if family != "Archer":
 		v = Vector2(0,0) 
 		g = 0
+ 
 
 
 func _on_Timer_timeout():

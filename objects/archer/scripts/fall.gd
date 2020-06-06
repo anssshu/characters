@@ -1,4 +1,4 @@
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 
@@ -25,10 +25,11 @@ func transition_logic(delta):
 	#fall to swim
 	if player.in_water:
 		return "swim"
-	#fall to attack
+	#fall to jump attack
 	if player.controls.attack :
-		return "attack"
+		return "jump_attack"
 	#fall to wall_slide
 	if (player.on_left_wall and player.controls.left) or (player.on_right_wall and player.controls.right) :
 		return "wall_slide"
+	
 	return null	

@@ -1,4 +1,4 @@
-extends State
+extends Node
 
 onready var player = get_parent().get_parent()
 
@@ -7,6 +7,7 @@ func on_enter(new_state,old_state):
 func on_exit(old_state,new_state):
 	pass
 func state_logic(delta):
+	
 	if player.controls.left :
 		player.velocity.x = -player.air_speed
 	elif player.controls.right :
@@ -18,13 +19,5 @@ func transition_logic(delta):
 	# fall to idle
 	if 	player.on_ground :
 		return "idle"
-	#fall to wall_jump
-	if player.controls.jump and player.on_wall:
-		return "wall_jump"
-	#fall to swim
-	if player.in_water:
-		return "swim"
-	#fall to attack
-	if player.controls.attack :
-		return "attack"
+	
 	return null	

@@ -4,11 +4,8 @@ extends Node
 onready var player = get_parent()
 
 func update(delta):
-	#print(player.velocity.y)
 	player.get_node("label").set_text(str(player.fsm.state))
 	update_sprite_facing()
-	
-	#logic for death
 	if player.health == 0:
 		player.fsm.set_state("die")
 	

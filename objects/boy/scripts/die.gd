@@ -1,4 +1,4 @@
-extends State
+extends Node
 
 
 func on_enter(new_state,old_state):
