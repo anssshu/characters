@@ -19,7 +19,7 @@ func update(delta):
 	check_ray_cast()
 	
 	# move the player
-	player.velocity.y += delta * player.gravity	
+	player.velocity.y += delta * player.GRAVITY	
 	player.velocity =  player.move_and_slide(player.velocity, Vector2(0,-1))
 
 

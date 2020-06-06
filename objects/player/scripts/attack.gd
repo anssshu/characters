@@ -8,17 +8,8 @@ func on_exit(old_state,new_state):
 func state_logic(delta):
 	#jumping attack
 	if player.on_ground and player.controls.jump :
-		player.velocity.y =  player.JUMPSPEED
-	#code for the running attack
-	if player.controls.left :
-		player.speed += player.ACCN*delta
-		player.velocity.x = -1*min(player.WALKSPEED,player.speed)
-	elif player.controls.right :
-		player.speed += player.ACCN*delta
-		player.velocity.x = min(player.WALKSPEED,player.speed)
-	else:
-		player.speed = 200
-		player.velocity.x = 0	
+		player.velocity.y =  player.jump_speed
+		
 func transition_logic(delta):
 	#get back to previous state after attack
 	if 	player.controls.attack == false:

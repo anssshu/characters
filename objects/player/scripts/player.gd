@@ -1,12 +1,14 @@
 extends KinematicBody2D
 
 
-const GRAVITY = 1200.0 
-const WALKSPEED = 800
-const JUMPSPEED = -600
-const AIRSPEED = 300
-const WALLJUMPSPEED = Vector2(400,-400)
-const ACCN = 2000
+var  gravity  
+var jump_height = 160
+var jump_time = .5
+var walk_speed = 800
+var jump_speed = -600
+var air_speed = 300
+var wall_jump_speed = Vector2(400,-400)
+var accn = 2000
 
 var health = 100
 var speed = 0
@@ -34,6 +36,8 @@ onready var label = $label
 
 
 func _ready():
+	gravity = 2*jump_height/pow(jump_time,2)
+	jump_speed = -sqrt(2*gravity*jump_height)
 	fsm.set_state("fall")
 	label.set_text("fall")
 	
