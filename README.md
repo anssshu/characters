@@ -1,5 +1,31 @@
 #godot
 
+#this is a collection of finite state machine characters
+
+#characters
+
+#char -- template with the basic states it can be a starting point for basic charcter
+
+1-idle
+2-run
+3-jump
+4-fall
+5-die
+
+#girl - template with following states --starting point with little advance controls
+
+1-idle
+2-run
+3-jump
+4-fall
+5-attack
+6-slide
+7-wall_jump
+8-swim
+9-die
+
+#archer - a compplete character with all animataions its demo not a starting point
+
 This foler contains a shell script godot.sh
 
 to use it type the following commands
@@ -18,17 +44,3 @@ the dir objects/player contains all player related files
 
 the dir objects/fsm contains a very basic state machine for understanding the concept of a state machine
 
-The player is a kinematic body 2d and contains a state machine 
-with  multiple states
-
-1 idle
-2 run
-3 jump
-4 attack
-5 slide
-6 fall
-7 wall_jump
-8 swim
-9 die
-
-It can used as a very good starting point for any game character

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://asset/BG.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item ;
+uniform sampler2D  tex;
+uniform vec3 scale;
+void fragment() {
+	vec4 color = texture(tex,UV);
+	
+	COLOR = vec4(color.x*scale.x,color.y*scale.y,color.z*scale.z,color.a);
+}
+"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/scale = Vector3( 1, 0.1, 1 )
+shader_param/tex = ExtResource( 1 )

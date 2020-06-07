@@ -1,0 +1,29 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://objects/characters/archer/scripts/player_class.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://objects/templates/meat_boy/scripts/state.gd"
+} ]
+_global_script_class_icons={
+"Player": "",
+"State": ""
+}
+
+[application]
+
+run/main_scene="res://level.tscn"
