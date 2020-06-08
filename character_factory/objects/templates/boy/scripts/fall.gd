@@ -24,7 +24,7 @@ func transition_logic(delta):
 		return "wall_jump"
 	#fall to swim 
 	if player.in_water:
-		return "swim"
+		return "float"
 	#fall to attack
 	if player.controls.attack :
 		return "attack"

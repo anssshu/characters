@@ -31,6 +31,7 @@ var on_wall = false
 var on_left_wall = false
 var on_right_wall = false
 var in_water = false
+var head_in_water = false
 var in_air = false
 
 var face_left = false

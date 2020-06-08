@@ -27,3 +27,7 @@ _global_script_class_icons={
 [application]
 
 run/main_scene="res://level.tscn"
+
+[debug]
+
+settings/stdout/print_fps=true

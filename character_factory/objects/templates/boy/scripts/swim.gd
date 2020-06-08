@@ -5,10 +5,13 @@ onready var player = get_parent().get_parent()
 
 func on_enter(new_state,old_state):
 	player.gravity = 0#2*player.jump_height/pow(player.jump_time,2)
+	player.get_node("sprite/bubble").emitting = true
 func on_exit(old_state,new_state):
-	player.gravity =  2*player.jump_height/pow(player.jump_time,2)
+	#player.gravity =  2*player.jump_height/pow(player.jump_time,2)
+	player.get_node("sprite/bubble").emitting = false
 func state_logic(delta):
 	var dir = Vector2(-1,1)
+	
 	if player.controls.left:
 		dir.x = -1
 	
@@ -23,13 +26,16 @@ func state_logic(delta):
 		dir.y = 1
 	else:
 		dir.y = 0
+	
 	player.velocity = dir*player.swim_speed
-	print(dir)
+	#if no button is pressed player moves up
+	if dir.length() ==0  and player.head_in_water :
+		player.velocity.y = -200
 	
 func transition_logic(delta):
-	#swim to jump
-	if player.in_water == false :
-		return "jump"
+	#swim to float
+	if player.head_in_water == false and player.in_water:
+		return "float"
 	#attack to die 
 	if player.health == 0:
 		return "die"	

@@ -14,6 +14,9 @@ func on_exit(old_state,new_state):
 func state_logic(delta):
 	pass	
 func transition_logic(delta):
+	#idle to fall
+	if player.velocity.y > 10:
+		return "fall"
 	#idle to run
 	if player.controls.left or 	player.controls.right :
 		return "run"

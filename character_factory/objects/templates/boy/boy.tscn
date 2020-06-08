@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://objects/templates/boy/scripts/fall.gd" type="Script" id=1]
 [ext_resource path="res://objects/templates/boy/asset/boy.png" type="Texture" id=2]
+[ext_resource path="res://objects/templates/boy/scripts/float.gd" type="Script" id=3]
 [ext_resource path="res://objects/templates/boy/scripts/updater.gd" type="Script" id=4]
 [ext_resource path="res://objects/templates/boy/scripts/wall_jump.gd" type="Script" id=5]
+[ext_resource path="res://objects/templates/boy/asset/bubble.png" type="Texture" id=6]
 [ext_resource path="res://objects/templates/boy/scripts/die.gd" type="Script" id=7]
 [ext_resource path="res://objects/templates/boy/scripts/player.gd" type="Script" id=8]
 [ext_resource path="res://objects/templates/boy/scripts/camera.gd" type="Script" id=9]
@@ -21,21 +23,48 @@
 [ext_resource path="res://objects/templates/boy/scripts/slide.gd" type="Script" id=24]
 [ext_resource path="res://objects/templates/boy/scripts/wall_slide.gd" type="Script" id=25]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 39.5998
-height = 28.3997
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 75 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.0133929, 0.635568 ), 0.0, 0.0, 0, 0, Vector2( 0.995536, 1 ), 0.0, 0.0, 0, 0 ]
 
 [node name="boy" type="KinematicBody2D"]
 script = ExtResource( 8 )
 
+[node name="positions" type="Node" parent="."]
+
+[node name="head_marker" type="Position2D" parent="positions"]
+position = Vector2( 0, -75 )
+
+[node name="torso_marker" type="Position2D" parent="positions"]
+position = Vector2( 1, -33 )
+
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -54 )
+position = Vector2( -2, -75 )
 shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -60, -160 )
+
+[node name="bubble" type="CPUParticles2D" parent="sprite"]
+position = Vector2( 27, -71 )
+rotation = -1.73311
+scale = Vector2( 0.6, 0.6 )
+emitting = false
+amount = 2
+lifetime = 2.0
+speed_scale = 3.21
+texture = ExtResource( 6 )
+emission_shape = 3
+emission_points = PoolVector2Array(  )
+emission_colors = PoolColorArray(  )
+spread = 18.62
+gravity = Vector2( 0, 0 )
+initial_velocity = 80.0
+scale_amount_curve = SubResource( 2 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 
@@ -66,9 +95,12 @@ script = ExtResource( 5 )
 [node name="wall_slide" type="Node" parent="fsm"]
 script = ExtResource( 25 )
 
-[node name="wall_slide_timer" type="Timer" parent="fsm/wall_slide"]
+[node name="wall_stick_timer" type="Timer" parent="fsm/wall_slide"]
 wait_time = 0.6
 one_shot = true
+
+[node name="float" type="Node" parent="fsm"]
+script = ExtResource( 3 )
 
 [node name="swim" type="Node" parent="fsm"]
 script = ExtResource( 22 )
@@ -78,6 +110,9 @@ script = ExtResource( 7 )
 
 [node name="hit" type="Node" parent="fsm"]
 script = ExtResource( 12 )
+
+[node name="hit_timer" type="Timer" parent="fsm/hit"]
+one_shot = true
 
 [node name="template" type="Node" parent="fsm"]
 script = ExtResource( 16 )
@@ -111,12 +146,12 @@ __meta__ = {
 }
 
 [node name="left" type="RayCast2D" parent="."]
-position = Vector2( -38, -50.75 )
+position = Vector2( -39, -56.75 )
 enabled = true
 cast_to = Vector2( -10, 0 )
 
 [node name="right" type="RayCast2D" parent="."]
-position = Vector2( 38.75, -48.75 )
+position = Vector2( 34.75, -59.75 )
 enabled = true
 cast_to = Vector2( 10, 0 )
 
@@ -124,4 +159,5 @@ cast_to = Vector2( 10, 0 )
 position = Vector2( -1, -5.25 )
 enabled = true
 cast_to = Vector2( 0, 10 )
-[connection signal="timeout" from="fsm/wall_slide/wall_slide_timer" to="fsm/wall_slide" method="_on_wall_slide_timer_timeout"]
+[connection signal="timeout" from="fsm/wall_slide/wall_stick_timer" to="fsm/wall_slide" method="_on_wall_slide_timer_timeout"]
+[connection signal="timeout" from="fsm/hit/hit_timer" to="fsm/hit" method="_on_hit_timer_timeout"]

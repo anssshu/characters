@@ -16,6 +16,8 @@ func update(delta):
 	check_collision(delta)
 	#check player is in water or not
 	player.in_water = is_in_water()
+	#check player is completely immersed in water or not
+	player.head_in_water = is_head_in_water()
 	#check if player is on ground or wall
 	check_ray_cast()
 	
@@ -59,14 +61,23 @@ func check_ray_cast():
 		player.on_wall = false		
 #-------------------------------------------------		
 func is_in_water():
+	var torso = player.get_node("positions/torso_marker")
 	var s = player.get_world_2d().direct_space_state
 	#water is at collision layer 2 and mask 2
-	var t = s.intersect_point(player.global_position+Vector2(0,-50),1,[],2)
+	var t = s.intersect_point(player.global_position+torso.position,1,[],2)
 	if t.size() == 1:
 		return true
 	else :
 		return false
-
+func is_head_in_water():
+	var head = player.get_node("positions/head_marker")
+	var s = player.get_world_2d().direct_space_state
+	#water is at collision layer 2 and mask 2
+	var t = s.intersect_point(player.global_position+head.position,1,[],2)
+	if t.size() == 1:
+		return true
+	else :
+		return false
 #code for handling collision
 func on_collision(c):
 	#print(c.normal)	

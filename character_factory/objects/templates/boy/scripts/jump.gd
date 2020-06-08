@@ -6,7 +6,7 @@ onready var player = get_parent().get_parent()
 
 
 func on_enter(new_state,old_state):
-	if old_state == "swim":
+	if old_state == "float":
 		player.velocity.y =  player.jump_speed
 	if player.on_ground :
 		player.velocity.y =  player.jump_speed
