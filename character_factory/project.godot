@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://objects/templates/meat_boy/scripts/state.gd"
+"path": "res://objects/templates/wallJumper/scripts/state.gd"
 } ]
 _global_script_class_icons={
 "Player": "",

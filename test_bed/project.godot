@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://objects/templates/hollow_knight/scripts/state.gd"
+"path": "res://objects/templates/basic_char_ai/scripts/state.gd"
 } ]
 _global_script_class_icons={
 "State": ""
