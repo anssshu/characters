@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://objects/baby/implode/implode_sprite.png" type="Texture" id=1]
+[ext_resource path="res://objects/baby/implode/implode.gd" type="Script" id=2]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "implode"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("implode_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 2, 1, 0 ]
+}
+
+[node name="implode" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="implode_sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 2
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "implode"
+anims/implode = SubResource( 1 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

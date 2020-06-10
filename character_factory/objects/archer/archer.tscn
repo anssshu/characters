@@ -1,0 +1,123 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://objects/archer/scripts/collision.gd" type="Script" id=1]
+[ext_resource path="res://objects/archer/sprite.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/archer/scripts/wall_slide.gd" type="Script" id=3]
+[ext_resource path="res://objects/archer/scripts/fsm.gd" type="Script" id=4]
+[ext_resource path="res://objects/archer/scripts/motion.gd" type="Script" id=5]
+[ext_resource path="res://objects/archer/scripts/idle.gd" type="Script" id=6]
+[ext_resource path="res://objects/archer/scripts/run.gd" type="Script" id=7]
+[ext_resource path="res://objects/archer/scripts/duck.gd" type="Script" id=8]
+[ext_resource path="res://objects/archer/scripts/archer.gd" type="Script" id=9]
+[ext_resource path="res://objects/archer/scripts/jump.gd" type="Script" id=10]
+[ext_resource path="res://objects/archer/scripts/swim.gd" type="Script" id=11]
+[ext_resource path="res://objects/archer/scripts/slide.gd" type="Script" id=12]
+[ext_resource path="res://objects/archer/scripts/updater.gd" type="Script" id=13]
+[ext_resource path="res://objects/archer/scripts/wall_jump.gd" type="Script" id=14]
+[ext_resource path="res://objects/archer/scripts/controls.gd" type="Script" id=15]
+[ext_resource path="res://objects/archer/scripts/attack.gd" type="Script" id=16]
+[ext_resource path="res://objects/archer/scripts/player.gd" type="Script" id=17]
+[ext_resource path="res://objects/archer/scripts/die.gd" type="Script" id=18]
+[ext_resource path="res://objects/archer/arrow/arrow.tscn" type="PackedScene" id=19]
+[ext_resource path="res://objects/archer/scripts/fall.gd" type="Script" id=20]
+[ext_resource path="res://objects/archer/scripts/duck_attack.gd" type="Script" id=21]
+[ext_resource path="res://objects/archer/scripts/jump_attack.gd" type="Script" id=22]
+
+
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 15.0
+height = 83.2
+
+[node name="archer" type="KinematicBody2D"]
+script = ExtResource( 17 )
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2( -8, -61 )
+shape = SubResource( 1 )
+
+[node name="sprite" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1.06066, -1.76776 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+
+[node name="run" type="Node" parent="fsm"]
+script = ExtResource( 7 )
+
+[node name="duck" type="Node" parent="fsm"]
+script = ExtResource( 8 )
+
+[node name="slide" type="Node" parent="fsm"]
+script = ExtResource( 12 )
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 10 )
+
+[node name="fall" type="Node" parent="fsm"]
+script = ExtResource( 20 )
+
+[node name="attack" type="Node" parent="fsm"]
+script = ExtResource( 16 )
+
+[node name="jump_attack" type="Node" parent="fsm"]
+script = ExtResource( 22 )
+
+[node name="duck_attack" type="Node" parent="fsm"]
+script = ExtResource( 21 )
+
+[node name="wall_slide" type="Node" parent="fsm"]
+script = ExtResource( 3 )
+
+[node name="wall_jump" type="Node" parent="fsm"]
+script = ExtResource( 14 )
+
+[node name="swim" type="Node" parent="fsm"]
+script = ExtResource( 11 )
+
+[node name="die" type="Node" parent="fsm"]
+script = ExtResource( 18 )
+
+[node name="controls" type="Node" parent="."]
+script = ExtResource( 15 )
+
+[node name="archer" type="Node" parent="."]
+script = ExtResource( 9 )
+arrow_class = ExtResource( 19 )
+
+[node name="motion" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="collision" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="updater" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="label" type="Label" parent="."]
+margin_left = -18.3327
+margin_top = -210.841
+margin_right = 38.6673
+margin_bottom = -186.841
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2( -20.9289, -54.7929 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2( 5.01475, -55.2322 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="down" type="RayCast2D" parent="."]
+position = Vector2( -7.42462, -7.82842 )
+enabled = true
+cast_to = Vector2( 0, 10 )

@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://objects/characters/archer/scripts/player_class.gd"
+"path": "res://objects/archer/scripts/player_class.gd"
 }, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://objects/templates/wallJumper/scripts/state.gd"
+"path": "res://objects/kilo/scripts/state.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
@@ -27,7 +27,3 @@ _global_script_class_icons={
 [application]
 
 run/main_scene="res://level.tscn"
-
-[debug]
-
-settings/stdout/print_fps=true

@@ -1,9 +1,6 @@
-i  am working on the boy template now
-the boy charachter mechanics is complete 
 
-it can be used as a template for any kinematic character player development now
+-- kilo animation development
+-- kilo with fluid animation
 
---add hit logic to char --done 
---create a rough  character atlas and use the boy template to developanother charater
 
---create a state amchine template for non player characters and add some ai script to it 
+--rigid body state machine template------later
