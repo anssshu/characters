@@ -20,6 +20,7 @@ func on_enter(new_state,old_state):
 	if player.on_ground:
 		player.velocity.y = player.jump_speed
 func on_exit(old_state,new_state):
+	player.animation_finished = false
 	#hide the weapon
 	player.get_node("sprite/sprite/root/body/left_arm/left_forearm/stick").hide()
 	#player.get_node("sprite/sprite/root/body/hanging _sword").show()
