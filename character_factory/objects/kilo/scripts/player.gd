@@ -37,6 +37,8 @@ var in_air = false
 var face_left = false
 var face_right = true
 
+var animation_finished = false
+
 onready var controls = $controls
 onready var fsm = $fsm
 onready var motion = $motion

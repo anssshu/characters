@@ -33,21 +33,22 @@ func state_logic(delta):
 		#player.velocity.y =  player.jump_speed
 		
 func transition_logic(delta):
-	#attack_jump to swim
-	if player.in_water:
-		return "float"
-	#attack jumping to fall
-	if player.controls.attack == false and player.on_ground == false and player.velocity.y > 0:
-		return "fall"
+	if player.animation_finished:
+		#attack_jump to swim
+		if player.in_water:
+			return "float"
+		#attack jumping to fall
+		if player.controls.attack == false and player.on_ground == false and player.velocity.y > 0:
+			return "fall"
+			
+		#atack jumping to idle
+		if player.on_ground or player.velocity.y == 0:#and player.controls.attack == false and player.controls.jump == false:
+			return "idle"
+		#attack jumping to attack
+		#if player.controls.attack and player.on_ground :
+			#return "attack"
 		
-	#atack jumping to idle
-	if player.on_ground or player.velocity.y == 0:#and player.controls.attack == false and player.controls.jump == false:
-		return "idle"
-	#attack jumping to attack
-	#if player.controls.attack and player.on_ground :
-		#return "attack"
-	
-	#attack to die 
-	if player.health == 0:
-		return "die"
+		#attack to die 
+		if player.health == 0:
+			return "die"
 	return null	

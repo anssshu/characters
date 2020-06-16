@@ -3,17 +3,17 @@ extends Node
 onready var player = get_parent().get_parent()
 
 func on_enter(new_state,old_state):
-	player.anim.play("jump")
+	player.anim.play("fall")
 func on_exit(old_state,new_state):
 	pass
 func state_logic(delta):
-	if player.fsm.previous_state != "wall_jump" :
-		if player.controls.left :
-			player.velocity.x = -player.air_speed
-		elif player.controls.right :
-			player.velocity.x = player.air_speed
-		else:
-			pass
+	#if player.fsm.previous_state != "wall_jump" :
+	if player.controls.left :
+		player.velocity.x = -player.air_speed
+	elif player.controls.right :
+		player.velocity.x = player.air_speed
+	else:
+		pass
 		
 func transition_logic(delta):
 	# fall to idle

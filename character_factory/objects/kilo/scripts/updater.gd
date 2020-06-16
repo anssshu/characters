@@ -14,12 +14,12 @@ func update(delta):
 #determine the facing of the player sprite
 func update_sprite_facing():
 	var sx = abs(player.get_node("sprite").scale.x)
-	if  player.controls.left and (player.on_ground or player.in_water):
+	if  player.velocity.x<0:
 		
 		player.face_left = true
 		player.face_right= false
 		
-	elif player.controls.right and (player.on_ground or player.in_water):
+	elif player.velocity.x >0:# and (player.on_ground or player.in_water):
 		
 		player.face_right = true
 		player.face_left = false

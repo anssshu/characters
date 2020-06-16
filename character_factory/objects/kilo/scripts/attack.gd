@@ -24,6 +24,7 @@ func on_enter(new_state,old_state):
 	#based on the old state different animation will be played 
 	pass
 func on_exit(old_state,new_state):
+	player.animation_finished = false
 	player.get_node("sprite/sprite/root/body/left_arm/left_forearm/stick").hide()
 	#player.get_node("sprite/sprite/root/body/hanging _sword").show()
 	player.get_node("sprite/sprite/arc").hide()
@@ -36,19 +37,20 @@ func state_logic(delta):
 		#player.velocity.y =  player.jump_speed
 		
 func transition_logic(delta):
-	#attack to swim
-	if player.in_water:
-		return "float"
-	#attack to idle
-	if player.on_ground and player.controls.attack == false:
-		return "idle"
-	#attack to jump:
-	if player.controls.jump:
-		return "jump"
-	#attack to jumping attack
-	#if player.on_ground and player.controls.jump and player.controls.attack :
-		#return "attack_jumping"
-	#attack to die 
-	if player.health == 0:
-		return "die"
+	if player.animation_finished:
+		#attack to swim
+		if player.in_water:
+			return "float"
+		#attack to idle
+		if player.on_ground and player.controls.attack == false:
+			return "idle"
+		#attack to jump:
+		if player.controls.jump:
+			return "jump"
+		#attack to jumping attack
+		#if player.on_ground and player.controls.jump and player.controls.attack :
+			#return "attack_jumping"
+		#attack to die 
+		if player.health == 0:
+			return "die"
 	return null	
