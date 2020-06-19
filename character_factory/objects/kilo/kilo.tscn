@@ -25,12 +25,11 @@
 [ext_resource path="res://objects/kilo/scripts/collision.gd" type="Script" id=23]
 [ext_resource path="res://objects/kilo/scripts/camera.gd" type="Script" id=24]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 40.0
-height = 90.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20, 55 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 85.9519, 40 )
+extents = Vector2( 55, 20 )
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0.0133929, 0.635568 ), 0.0, 0.0, 0, 0, Vector2( 0.995536, 1 ), 0.0, 0.0, 0, 0 ]
@@ -42,22 +41,23 @@ script = ExtResource( 1 )
 editor/display_folded = true
 
 [node name="head_marker" type="Position2D" parent="positions"]
-position = Vector2( 0, -60.0173 )
+position = Vector2( 0.402428, -39.0775 )
 
 [node name="torso_marker" type="Position2D" parent="positions"]
-position = Vector2( -0.414215, -20.9792 )
+position = Vector2( 0.269005, -27.5292 )
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2( -1.29289, -88.818 )
+position = Vector2( 1.78253, -58.3728 )
 shape = SubResource( 1 )
 
 [node name="swim_collider" type="CollisionShape2D" parent="."]
-position = Vector2( 3, -44.2929 )
+position = Vector2( 4.15764, -23.9759 )
 shape = SubResource( 2 )
 disabled = true
 
 [node name="sprite" type="Node2D" parent="."]
 editor/display_folded = true
+scale = Vector2( 0.6, 0.6 )
 
 [node name="bubble" type="CPUParticles2D" parent="sprite"]
 position = Vector2( 76, -61 )
@@ -79,9 +79,8 @@ scale_amount_curve = SubResource( 3 )
 [node name="sprite" parent="sprite" instance=ExtResource( 3 )]
 scale = Vector2( 0.6, 0.6 )
 
-[node name="anim" type="AnimationPlayer" parent="."]
-
 [node name="fsm" type="Node" parent="."]
+editor/display_folded = true
 script = ExtResource( 4 )
 
 [node name="idle" type="Node" parent="fsm"]
@@ -154,8 +153,10 @@ script = ExtResource( 22 )
 script = ExtResource( 23 )
 
 [node name="camera" type="Camera2D" parent="."]
-limit_left = 0
-limit_bottom = 600
+limit_left = -32
+limit_top = -300
+limit_right = 3064
+limit_bottom = 1400
 limit_smoothed = true
 smoothing_enabled = true
 drag_margin_top = 0.0
@@ -174,17 +175,17 @@ __meta__ = {
 }
 
 [node name="left" type="RayCast2D" parent="."]
-position = Vector2( -38.2929, -141.611 )
+position = Vector2( -16.4791, -64.5165 )
 enabled = true
 cast_to = Vector2( -10, 0 )
 
 [node name="right" type="RayCast2D" parent="."]
-position = Vector2( 35.75, -145.026 )
+position = Vector2( 20.4871, -62.3225 )
 enabled = true
 cast_to = Vector2( 10, 0 )
 
 [node name="down" type="RayCast2D" parent="."]
-position = Vector2( -1, -9.19975 )
+position = Vector2( 1.2083, -5.88729 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 [connection signal="timeout" from="fsm/slide/slide_timer" to="fsm/slide" method="_on_slide_timer_timeout"]

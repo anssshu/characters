@@ -3565,15 +3565,14 @@ position = Vector2( -6, 23 )
 
 [node name="body" type="Sprite" parent="root"]
 position = Vector2( -0.7, -123 )
-rotation = 0.180535
 texture = ExtResource( 2 )
 offset = Vector2( -0.198498, -41.481 )
 region_enabled = true
 region_rect = Rect2( 11.7256, 144.238, 57.3333, 112.444 )
 
 [node name="left_arm" type="Sprite" parent="root/body"]
-position = Vector2( 15.599, -66 )
-rotation = 2.07293
+position = Vector2( 15.599, -74.0971 )
+rotation = 1.77865
 z_index = -1
 texture = ExtResource( 2 )
 offset = Vector2( 16.3287, 0.605644 )
@@ -3582,7 +3581,7 @@ region_rect = Rect2( 128.979, 227.656, 41.7778, 22.2222 )
 
 [node name="left_forearm" type="Sprite" parent="root/body/left_arm"]
 position = Vector2( 32.1299, -1.98006 )
-rotation = -0.22546
+rotation = -0.348438
 z_index = -1
 texture = ExtResource( 2 )
 offset = Vector2( 33.4102, -2.90043 )
@@ -3646,7 +3645,6 @@ region_rect = Rect2( 119.102, 3.03333, 73.3333, 200 )
 
 [node name="left_thigh" type="Sprite" parent="root"]
 position = Vector2( 12.3001, -126.2 )
-rotation = -0.817694
 z_index = -1
 texture = ExtResource( 2 )
 offset = Vector2( -1.13135, 22.5643 )
@@ -3655,7 +3653,6 @@ region_rect = Rect2( 88.3222, 160.139, 33.3333, 55.1111 )
 
 [node name="left_leg" type="Sprite" parent="root/left_thigh"]
 position = Vector2( -3.39163, 40.6078 )
-rotation = 1.63615
 texture = ExtResource( 2 )
 offset = Vector2( 14.305, 26.4265 )
 region_enabled = true
@@ -3663,7 +3660,6 @@ region_rect = Rect2( 203.306, 147.239, 47.5556, 60 )
 
 [node name="right_thigh" type="Sprite" parent="root"]
 position = Vector2( -11.6999, -118.2 )
-rotation = 0.41029
 texture = ExtResource( 2 )
 offset = Vector2( -0.835993, 22.5698 )
 region_enabled = true

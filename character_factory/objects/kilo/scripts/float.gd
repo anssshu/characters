@@ -26,7 +26,7 @@ func state_logic(delta):
 	
 func transition_logic(delta):
 	#float swim
-	if player.head_in_water and player.in_water:
+	if player.head_in_water and player.in_water and player.on_wall == false:
 		return "swim"
 	#float to jump
 	#if (player.in_water and player.controls.jump) or player.in_water == false :

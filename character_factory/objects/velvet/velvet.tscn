@@ -1,0 +1,219 @@
+[gd_scene load_steps=49 format=2]
+
+[ext_resource path="res://objects/velvet/scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://objects/velvet/asset/slide0000.png" type="Texture" id=2]
+[ext_resource path="res://objects/velvet/asset/idle0000.png" type="Texture" id=3]
+[ext_resource path="res://objects/velvet/asset/idle0001.png" type="Texture" id=4]
+[ext_resource path="res://objects/velvet/asset/idle0002.png" type="Texture" id=5]
+[ext_resource path="res://objects/velvet/asset/idle0003.png" type="Texture" id=6]
+[ext_resource path="res://objects/velvet/asset/jump0000.png" type="Texture" id=7]
+[ext_resource path="res://objects/velvet/asset/jump0001.png" type="Texture" id=8]
+[ext_resource path="res://objects/velvet/asset/jump0002.png" type="Texture" id=9]
+[ext_resource path="res://objects/velvet/asset/jump0003.png" type="Texture" id=10]
+[ext_resource path="res://objects/velvet/asset/run0000.png" type="Texture" id=11]
+[ext_resource path="res://objects/velvet/asset/run0001.png" type="Texture" id=12]
+[ext_resource path="res://objects/velvet/asset/run0002.png" type="Texture" id=13]
+[ext_resource path="res://objects/velvet/asset/run0003.png" type="Texture" id=14]
+[ext_resource path="res://objects/velvet/asset/fall0000.png" type="Texture" id=15]
+[ext_resource path="res://objects/velvet/asset/fall0001.png" type="Texture" id=16]
+[ext_resource path="res://objects/velvet/asset/fall0002.png" type="Texture" id=17]
+[ext_resource path="res://objects/velvet/asset/fall0003.png" type="Texture" id=18]
+[ext_resource path="res://objects/velvet/asset/fall0004.png" type="Texture" id=19]
+[ext_resource path="res://objects/velvet/asset/fall0005.png" type="Texture" id=20]
+[ext_resource path="res://objects/velvet/asset/fall0006.png" type="Texture" id=21]
+[ext_resource path="res://objects/velvet/asset/fall0007.png" type="Texture" id=22]
+[ext_resource path="res://objects/velvet/asset/wall_slide0000.png" type="Texture" id=23]
+[ext_resource path="res://objects/velvet/asset/wall_slide0001.png" type="Texture" id=24]
+[ext_resource path="res://objects/velvet/asset/wall_slide0002.png" type="Texture" id=25]
+[ext_resource path="res://objects/velvet/asset/wall_slide0003.png" type="Texture" id=26]
+[ext_resource path="res://objects/velvet/asset/air_dash0000.png" type="Texture" id=27]
+[ext_resource path="res://objects/velvet/scripts/fsm.gd" type="Script" id=28]
+[ext_resource path="res://objects/velvet/scripts/idle.gd" type="Script" id=29]
+[ext_resource path="res://objects/velvet/scripts/run.gd" type="Script" id=30]
+[ext_resource path="res://objects/velvet/scripts/slide.gd" type="Script" id=31]
+[ext_resource path="res://objects/velvet/scripts/jump.gd" type="Script" id=32]
+[ext_resource path="res://objects/velvet/scripts/air_dash.gd" type="Script" id=33]
+[ext_resource path="res://objects/velvet/scripts/fall.gd" type="Script" id=34]
+[ext_resource path="res://objects/velvet/scripts/attack.gd" type="Script" id=35]
+[ext_resource path="res://objects/velvet/scripts/wall_jump.gd" type="Script" id=36]
+[ext_resource path="res://objects/velvet/scripts/wall_slide.gd" type="Script" id=37]
+[ext_resource path="res://objects/velvet/scripts/die.gd" type="Script" id=38]
+[ext_resource path="res://objects/velvet/scripts/hit.gd" type="Script" id=39]
+[ext_resource path="res://objects/velvet/scripts/template.gd" type="Script" id=40]
+[ext_resource path="res://objects/velvet/scripts/controls.gd" type="Script" id=41]
+[ext_resource path="res://objects/velvet/scripts/motion.gd" type="Script" id=42]
+[ext_resource path="res://objects/velvet/scripts/updater.gd" type="Script" id=43]
+[ext_resource path="res://objects/velvet/scripts/collision.gd" type="Script" id=44]
+[ext_resource path="res://objects/velvet/scripts/camera.gd" type="Script" id=45]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 50, 25 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 24.7439
+height = 69.8038
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "slide",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "jump",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "wall_slide",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "air_dash",
+"speed": 5.0
+} ]
+
+[node name="velvet" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="slide_collider" type="CollisionShape2D" parent="."]
+position = Vector2( -3.94062, -23.7084 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2( -3.83646, -58.2419 )
+shape = SubResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 2.22045e-16, 0 )
+scale = Vector2( 1.7, 1.7 )
+frames = SubResource( 3 )
+animation = "air_dash"
+playing = true
+centered = false
+offset = Vector2( -34.4484, -62.5769 )
+
+[node name="fsm" type="Node" parent="."]
+editor/display_folded = true
+script = ExtResource( 28 )
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 29 )
+
+[node name="run" type="Node" parent="fsm"]
+script = ExtResource( 30 )
+
+[node name="slide" type="Node" parent="fsm"]
+script = ExtResource( 31 )
+
+[node name="jump" type="Node" parent="fsm"]
+script = ExtResource( 32 )
+
+[node name="air_dash" type="Node" parent="fsm"]
+script = ExtResource( 33 )
+
+[node name="timer" type="Timer" parent="fsm/air_dash"]
+wait_time = 0.1
+one_shot = true
+
+[node name="fall" type="Node" parent="fsm"]
+script = ExtResource( 34 )
+
+[node name="attack" type="Node" parent="fsm"]
+script = ExtResource( 35 )
+
+[node name="wall_jump" type="Node" parent="fsm"]
+script = ExtResource( 36 )
+
+[node name="wall_slide" type="Node" parent="fsm"]
+editor/display_folded = true
+script = ExtResource( 37 )
+
+[node name="wall_slide_timer" type="Timer" parent="fsm/wall_slide"]
+wait_time = 0.3
+one_shot = true
+
+[node name="die" type="Node" parent="fsm"]
+script = ExtResource( 38 )
+
+[node name="hit" type="Node" parent="fsm"]
+editor/display_folded = true
+script = ExtResource( 39 )
+
+[node name="hit_timer" type="Timer" parent="fsm/hit"]
+
+[node name="template" type="Node" parent="fsm"]
+script = ExtResource( 40 )
+
+[node name="controls" type="Node" parent="."]
+script = ExtResource( 41 )
+
+[node name="motion" type="Node" parent="."]
+script = ExtResource( 42 )
+
+[node name="updater" type="Node" parent="."]
+script = ExtResource( 43 )
+
+[node name="collision" type="Node" parent="."]
+script = ExtResource( 44 )
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2( 1.25, 1.25 )
+limit_left = 0
+limit_top = -192
+limit_right = 3064
+limit_bottom = 1400
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.82
+script = ExtResource( 45 )
+
+[node name="label" type="Label" parent="."]
+margin_left = -30.0
+margin_top = -171.5
+margin_right = 27.0
+margin_bottom = -147.5
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="left" type="RayCast2D" parent="."]
+position = Vector2( -26.8869, -54.6933 )
+enabled = true
+cast_to = Vector2( -10, 0 )
+
+[node name="right" type="RayCast2D" parent="."]
+position = Vector2( 18.3163, -54.1273 )
+enabled = true
+cast_to = Vector2( 10, 0 )
+
+[node name="down" type="RayCast2D" parent="."]
+position = Vector2( -1, -5.25 )
+enabled = true
+cast_to = Vector2( 0, 10 )
+[connection signal="timeout" from="fsm/air_dash/timer" to="fsm/air_dash" method="_on_timer_timeout"]
+[connection signal="timeout" from="fsm/wall_slide/wall_slide_timer" to="fsm/wall_slide" method="_on_wall_slide_timer_timeout"]
+[connection signal="timeout" from="fsm/hit/hit_timer" to="fsm/hit" method="_on_hit_timer_timeout"]

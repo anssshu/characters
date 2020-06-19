@@ -9,14 +9,14 @@ extends KinematicBody2D
 
 
 var  gravity  
-var jump_height = 140
+var jump_height = 110*2
 var jump_time = .35
 #max walk speed
-var walk_speed = 400
+var walk_speed = 600
 var jump_speed = -300
-var air_speed = 400
-var swim_speed = 400
-var wall_jump_speed = Vector2(walk_speed,-800)
+var air_speed = 600
+var swim_speed = 500
+var wall_jump_speed 
 var player_accn_time = .4
 var accn 
 
@@ -55,8 +55,10 @@ func _ready():
 	gravity = 2*jump_height/pow(jump_time,2)
 	jump_speed = -sqrt(2*gravity*jump_height)
 	accn = walk_speed/player_accn_time
-	fsm.set_state("fall")
+	fsm.set_state("idle")
 	label.set_text("fall")
+	
+	wall_jump_speed = Vector2(walk_speed,jump_speed)
 	
 func _physics_process(delta):
 	
