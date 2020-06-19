@@ -29,6 +29,19 @@ func on_exit(old_state,new_state):
 	#player.get_node("sprite/sprite/root/body/hanging _sword").show()
 	player.get_node("sprite/sprite/arc").hide()
 func state_logic(delta):
+	#update player facing
+	if player.controls.left:
+		
+		player.face_left = true
+		player.face_right = false
+		
+	elif player.controls.right:
+		
+		player.face_left = false
+		player.face_right = true
+	else:
+		pass
+		
 	#stop if running
 	if player.on_ground:
 		player.velocity.x = 0
@@ -37,6 +50,9 @@ func state_logic(delta):
 		#player.velocity.y =  player.jump_speed
 		
 func transition_logic(delta):
+	#attack to jump:
+	if player.controls.jump:
+		return "jump"
 	if player.animation_finished:
 		#attack to swim
 		if player.in_water:
@@ -44,9 +60,7 @@ func transition_logic(delta):
 		#attack to idle
 		if player.on_ground and player.controls.attack == false:
 			return "idle"
-		#attack to jump:
-		if player.controls.jump:
-			return "jump"
+		
 		#attack to jumping attack
 		#if player.on_ground and player.controls.jump and player.controls.attack :
 			#return "attack_jumping"

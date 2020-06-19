@@ -10,7 +10,7 @@ extends KinematicBody2D
 
 var  gravity  
 var jump_height = 160
-var jump_time = .5
+var jump_time = .35
 #max walk speed
 var walk_speed = 600
 var jump_speed = -300
@@ -36,6 +36,9 @@ var in_air = false
 
 var face_left = false
 var face_right = true
+
+#useful for state transition after animation is complete
+var finished_animation = false 
 
 onready var controls = $controls
 onready var fsm = $fsm

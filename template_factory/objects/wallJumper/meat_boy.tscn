@@ -1,25 +1,24 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://objects/wallJumper/scripts/player.gd" type="Script" id=1]
-[ext_resource path="res://objects/wallJumper/scripts/wall_slide.gd" type="Script" id=2]
-[ext_resource path="res://objects/wallJumper/asset/boy.png" type="Texture" id=3]
-[ext_resource path="res://objects/wallJumper/scripts/die.gd" type="Script" id=4]
-[ext_resource path="res://objects/wallJumper/scripts/fsm.gd" type="Script" id=5]
-[ext_resource path="res://objects/wallJumper/scripts/idle.gd" type="Script" id=6]
-[ext_resource path="res://objects/wallJumper/scripts/wall_jump.gd" type="Script" id=7]
+[ext_resource path="res://objects/wallJumper/asset/boy.png" type="Texture" id=2]
+[ext_resource path="res://objects/wallJumper/scripts/fsm.gd" type="Script" id=3]
+[ext_resource path="res://objects/wallJumper/scripts/idle.gd" type="Script" id=4]
+[ext_resource path="res://objects/wallJumper/scripts/run.gd" type="Script" id=5]
+[ext_resource path="res://objects/wallJumper/scripts/slide.gd" type="Script" id=6]
+[ext_resource path="res://objects/wallJumper/scripts/jump.gd" type="Script" id=7]
 [ext_resource path="res://objects/wallJumper/scripts/fall.gd" type="Script" id=8]
-[ext_resource path="res://objects/wallJumper/scripts/camera.gd" type="Script" id=9]
-[ext_resource path="res://objects/wallJumper/scripts/run.gd" type="Script" id=10]
-[ext_resource path="res://objects/wallJumper/scripts/motion.gd" type="Script" id=11]
-[ext_resource path="res://objects/wallJumper/scripts/attack.gd" type="Script" id=12]
-[ext_resource path="res://objects/wallJumper/scripts/controls.gd" type="Script" id=13]
-[ext_resource path="res://objects/wallJumper/scripts/hit.gd" type="Script" id=14]
-[ext_resource path="res://objects/wallJumper/scripts/slide.gd" type="Script" id=15]
-[ext_resource path="res://objects/wallJumper/scripts/collision.gd" type="Script" id=16]
-[ext_resource path="res://objects/wallJumper/scripts/jump.gd" type="Script" id=17]
-[ext_resource path="res://objects/wallJumper/scripts/updater.gd" type="Script" id=18]
-[ext_resource path="res://objects/wallJumper/scripts/template.gd" type="Script" id=19]
-
+[ext_resource path="res://objects/wallJumper/scripts/attack.gd" type="Script" id=9]
+[ext_resource path="res://objects/wallJumper/scripts/wall_jump.gd" type="Script" id=10]
+[ext_resource path="res://objects/wallJumper/scripts/wall_slide.gd" type="Script" id=11]
+[ext_resource path="res://objects/wallJumper/scripts/die.gd" type="Script" id=12]
+[ext_resource path="res://objects/wallJumper/scripts/hit.gd" type="Script" id=13]
+[ext_resource path="res://objects/wallJumper/scripts/template.gd" type="Script" id=14]
+[ext_resource path="res://objects/wallJumper/scripts/controls.gd" type="Script" id=15]
+[ext_resource path="res://objects/wallJumper/scripts/motion.gd" type="Script" id=16]
+[ext_resource path="res://objects/wallJumper/scripts/updater.gd" type="Script" id=17]
+[ext_resource path="res://objects/wallJumper/scripts/collision.gd" type="Script" id=18]
+[ext_resource path="res://objects/wallJumper/scripts/camera.gd" type="Script" id=19]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 39.5998
@@ -34,71 +33,71 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 scale = Vector2( 0.3, 0.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -115, -212 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 
 [node name="fsm" type="Node" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 
 [node name="idle" type="Node" parent="fsm"]
-script = ExtResource( 6 )
+script = ExtResource( 4 )
 
 [node name="run" type="Node" parent="fsm"]
-script = ExtResource( 10 )
+script = ExtResource( 5 )
 
 [node name="slide" type="Node" parent="fsm"]
-script = ExtResource( 15 )
+script = ExtResource( 6 )
 
 [node name="jump" type="Node" parent="fsm"]
-script = ExtResource( 17 )
+script = ExtResource( 7 )
 
 [node name="fall" type="Node" parent="fsm"]
 script = ExtResource( 8 )
 
 [node name="attack" type="Node" parent="fsm"]
-script = ExtResource( 12 )
+script = ExtResource( 9 )
 
 [node name="wall_jump" type="Node" parent="fsm"]
-script = ExtResource( 7 )
+script = ExtResource( 10 )
 
 [node name="wall_slide" type="Node" parent="fsm"]
-script = ExtResource( 2 )
+script = ExtResource( 11 )
 
 [node name="wall_slide_timer" type="Timer" parent="fsm/wall_slide"]
 wait_time = 0.6
 one_shot = true
 
 [node name="die" type="Node" parent="fsm"]
-script = ExtResource( 4 )
+script = ExtResource( 12 )
 
 [node name="hit" type="Node" parent="fsm"]
-script = ExtResource( 14 )
+script = ExtResource( 13 )
 
 [node name="hit_timer" type="Timer" parent="fsm/hit"]
 
 [node name="template" type="Node" parent="fsm"]
-script = ExtResource( 19 )
+script = ExtResource( 14 )
 
 [node name="controls" type="Node" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 15 )
 
 [node name="motion" type="Node" parent="."]
-script = ExtResource( 11 )
+script = ExtResource( 16 )
 
 [node name="updater" type="Node" parent="."]
-script = ExtResource( 18 )
+script = ExtResource( 17 )
 
 [node name="collision" type="Node" parent="."]
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 
 [node name="camera" type="Camera2D" parent="."]
 limit_left = 0
 limit_bottom = 600
 smoothing_enabled = true
-script = ExtResource( 9 )
+script = ExtResource( 19 )
 
 [node name="label" type="Label" parent="."]
 margin_left = -30.0

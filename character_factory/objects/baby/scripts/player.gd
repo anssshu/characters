@@ -3,13 +3,13 @@ extends KinematicBody2D
 
 export var stone_class:PackedScene
 var  gravity  
-var jump_height = 160
+var jump_height = 320
 var jump_time = .35
 #max walk speed
-var walk_speed = 400
-var jump_speed = -300
-var air_speed = 200
-var wall_jump_speed = Vector2(600,-400)
+var walk_speed = 800
+var jump_speed = -600
+var air_speed = 400
+var wall_jump_speed = Vector2(1200,-800)
 var player_accn_time = .35
 var accn 
 

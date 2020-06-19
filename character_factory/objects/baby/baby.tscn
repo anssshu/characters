@@ -1,27 +1,26 @@
 [gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://objects/baby/scripts/hit.gd" type="Script" id=1]
-[ext_resource path="res://objects/baby/scripts/die.gd" type="Script" id=2]
-[ext_resource path="res://objects/baby/scripts/controls.gd" type="Script" id=3]
-[ext_resource path="res://objects/baby/scripts/wall_jump.gd" type="Script" id=4]
-[ext_resource path="res://objects/baby/scripts/camera.gd" type="Script" id=5]
-[ext_resource path="res://objects/baby/scripts/collision.gd" type="Script" id=6]
-[ext_resource path="res://objects/baby/scripts/run.gd" type="Script" id=7]
+[ext_resource path="res://objects/baby/scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://objects/baby/stone/stone.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/baby/asset/baby.png" type="Texture" id=3]
+[ext_resource path="res://objects/baby/scripts/fsm.gd" type="Script" id=4]
+[ext_resource path="res://objects/baby/scripts/idle.gd" type="Script" id=5]
+[ext_resource path="res://objects/baby/scripts/run.gd" type="Script" id=6]
+[ext_resource path="res://objects/baby/scripts/jump.gd" type="Script" id=7]
 [ext_resource path="res://objects/baby/scripts/fall.gd" type="Script" id=8]
-[ext_resource path="res://objects/baby/scripts/fsm.gd" type="Script" id=9]
-[ext_resource path="res://objects/baby/scripts/jump.gd" type="Script" id=10]
-[ext_resource path="res://objects/baby/scripts/player.gd" type="Script" id=11]
-[ext_resource path="res://objects/baby/scripts/jump_attack.gd" type="Script" id=12]
-[ext_resource path="res://objects/baby/scripts/template.gd" type="Script" id=13]
+[ext_resource path="res://objects/baby/scripts/attack.gd" type="Script" id=9]
+[ext_resource path="res://objects/baby/scripts/jump_attack.gd" type="Script" id=10]
+[ext_resource path="res://objects/baby/scripts/run_attack.gd" type="Script" id=11]
+[ext_resource path="res://objects/baby/scripts/hit.gd" type="Script" id=12]
+[ext_resource path="res://objects/baby/scripts/wall_jump.gd" type="Script" id=13]
 [ext_resource path="res://objects/baby/scripts/wall_slide.gd" type="Script" id=14]
-[ext_resource path="res://objects/baby/scripts/motion.gd" type="Script" id=15]
-[ext_resource path="res://objects/baby/scripts/run_attack.gd" type="Script" id=16]
-[ext_resource path="res://objects/baby/asset/baby.png" type="Texture" id=17]
-[ext_resource path="res://objects/baby/scripts/attack.gd" type="Script" id=18]
+[ext_resource path="res://objects/baby/scripts/die.gd" type="Script" id=15]
+[ext_resource path="res://objects/baby/scripts/template.gd" type="Script" id=16]
+[ext_resource path="res://objects/baby/scripts/controls.gd" type="Script" id=17]
+[ext_resource path="res://objects/baby/scripts/motion.gd" type="Script" id=18]
 [ext_resource path="res://objects/baby/scripts/updater.gd" type="Script" id=19]
-[ext_resource path="res://objects/baby/scripts/idle.gd" type="Script" id=20]
-[ext_resource path="res://objects/baby/stone/stone.tscn" type="PackedScene" id=21]
-
+[ext_resource path="res://objects/baby/scripts/collision.gd" type="Script" id=20]
+[ext_resource path="res://objects/baby/scripts/camera.gd" type="Script" id=21]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 39.5998
@@ -138,8 +137,8 @@ tracks/0/keys = {
 }
 
 [node name="baby" type="KinematicBody2D"]
-script = ExtResource( 11 )
-stone_class = ExtResource( 21 )
+script = ExtResource( 1 )
+stone_class = ExtResource( 2 )
 
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -54 )
@@ -147,7 +146,7 @@ shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 17 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( -85, -185 )
 vframes = 5
@@ -164,34 +163,34 @@ anims/run = SubResource( 7 )
 anims/run_attack = SubResource( 8 )
 
 [node name="fsm" type="Node" parent="."]
-script = ExtResource( 9 )
+script = ExtResource( 4 )
 
 [node name="idle" type="Node" parent="fsm"]
-script = ExtResource( 20 )
+script = ExtResource( 5 )
 
 [node name="run" type="Node" parent="fsm"]
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="jump" type="Node" parent="fsm"]
-script = ExtResource( 10 )
+script = ExtResource( 7 )
 
 [node name="fall" type="Node" parent="fsm"]
 script = ExtResource( 8 )
 
 [node name="attack" type="Node" parent="fsm"]
-script = ExtResource( 18 )
+script = ExtResource( 9 )
 
 [node name="jump_attack" type="Node" parent="fsm"]
-script = ExtResource( 12 )
+script = ExtResource( 10 )
 
 [node name="run_attack" type="Node" parent="fsm"]
-script = ExtResource( 16 )
+script = ExtResource( 11 )
 
 [node name="hit" type="Node" parent="fsm"]
-script = ExtResource( 1 )
+script = ExtResource( 12 )
 
 [node name="wall_jump" type="Node" parent="fsm"]
-script = ExtResource( 4 )
+script = ExtResource( 13 )
 
 [node name="wall_slide" type="Node" parent="fsm"]
 script = ExtResource( 14 )
@@ -201,22 +200,22 @@ wait_time = 0.3
 one_shot = true
 
 [node name="die" type="Node" parent="fsm"]
-script = ExtResource( 2 )
+script = ExtResource( 15 )
 
 [node name="template" type="Node" parent="fsm"]
-script = ExtResource( 13 )
+script = ExtResource( 16 )
 
 [node name="controls" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 17 )
 
 [node name="motion" type="Node" parent="."]
-script = ExtResource( 15 )
+script = ExtResource( 18 )
 
 [node name="updater" type="Node" parent="."]
 script = ExtResource( 19 )
 
 [node name="collision" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 20 )
 
 [node name="camera" type="Camera2D" parent="."]
 limit_left = 0
@@ -224,9 +223,8 @@ limit_top = -2000
 limit_right = 1000
 limit_bottom = 600
 limit_smoothed = true
-drag_margin_v_enabled = true
 drag_margin_top = 1.0
-script = ExtResource( 5 )
+script = ExtResource( 21 )
 
 [node name="label" type="Label" parent="."]
 margin_left = -30.0

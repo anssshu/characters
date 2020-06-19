@@ -7,7 +7,7 @@ code = "shader_type canvas_item ;
 uniform sampler2D  tex;
 uniform vec3 scale;
 void fragment() {
-	vec4 color = texture(tex,UV);
+	vec4 color = texture(TEXTURE,UV);
 	
 	COLOR = vec4(color.x*scale.x,color.y*scale.y,color.z*scale.z,color.a);
 }
@@ -15,5 +15,5 @@ void fragment() {
 
 [resource]
 shader = SubResource( 1 )
-shader_param/scale = Vector3( 1, 0.1, 1 )
+shader_param/scale = Vector3( 0.2, 0.05, 0.2 )
 shader_param/tex = ExtResource( 1 )

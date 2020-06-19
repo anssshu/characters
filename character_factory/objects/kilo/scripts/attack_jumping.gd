@@ -26,6 +26,18 @@ func on_exit(old_state,new_state):
 	#player.get_node("sprite/sprite/root/body/hanging _sword").show()
 	player.get_node("sprite/sprite/arc").hide()
 func state_logic(delta):
+	#update player facing
+	if player.controls.left:
+		
+		player.face_left = true
+		player.face_right = false
+		
+	elif player.controls.right:
+		
+		player.face_left = false
+		player.face_right = true
+	else:
+		pass
 	#stop if running
 	if player.on_ground:
 		player.velocity.x = 0

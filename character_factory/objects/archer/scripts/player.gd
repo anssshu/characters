@@ -5,7 +5,7 @@ var family = "Archer"
 # this is a kinematic player class for declaring all the player parameters
 
 var GRAVITY = 1200.0 
-var jump_height = 160
+var jump_height = 320
 var jump_time = .4
 const WALKSPEED = 600
 var JUMPSPEED = -700

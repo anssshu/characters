@@ -5,7 +5,7 @@ extends Area2D
 # var b = "text"
 export var implode:PackedScene
 var g = Vector2(0,1650)
-var u = Vector2(900,-300)
+var u = Vector2(1800,-600)
 var v = Vector2()
 # Called when the node enters the scene tree for the first time.
 func _ready():

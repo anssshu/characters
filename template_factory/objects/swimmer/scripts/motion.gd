@@ -30,8 +30,9 @@ func update(delta):
 #-------------------------------------------
 func check_collision(delta):
 	#check for collision
-	var c = player.move_and_collide(player.velocity*delta) #it holds collision data
-	if c:
+	var cnt = player. get_slide_count()#player.move_and_collide(player.velocity*delta) #it holds collision data
+	if cnt !=0:
+		var c = player.get_slide_collision(0)
 		emit_signal("my_signal",c)
 		#calculate collision normal
 		player.n = c.normal		
