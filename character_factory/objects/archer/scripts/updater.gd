@@ -17,12 +17,12 @@ func update(delta):
 #determine the facing of the player sprite
 func update_sprite_facing():
 	var sx = abs(player.get_node("sprite").scale.x)
-	if  player.controls.left:
+	if  player.velocity.x < 0 :#player.controls.left:
 		
 		player.face_left = true
 		player.face_right= false
 		
-	elif player.controls.right:
+	elif player.velocity.x > 0 :#player.controls.right:
 		
 		player.face_right = true
 		player.face_left = false

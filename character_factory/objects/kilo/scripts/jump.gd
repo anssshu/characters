@@ -24,6 +24,9 @@ func state_logic(delta):
 	else:
 		pass
 func transition_logic(delta):
+	#jump to air dash
+	if player.controls.dash :
+		return "air_dash"
 	#jump to fall
 	if  player.velocity.y > 0	:
 		return "fall"

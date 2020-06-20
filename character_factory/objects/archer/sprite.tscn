@@ -4,8 +4,6 @@
 [ext_resource path="res://objects/archer/asset/bow.png" type="Texture" id=2]
 [ext_resource path="res://objects/archer/asset/quiver.png" type="Texture" id=3]
 
-
-
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
 length = 0.4
@@ -2675,15 +2673,15 @@ tracks/17/keys = {
 [node name="sprite" type="Node2D"]
 
 [node name="body" type="Sprite" parent="."]
-position = Vector2( -10, -70 )
-rotation = -0.0336212
+position = Vector2( -4, -43 )
+rotation = -0.140705
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 56, 80 )
 
 [node name="left_leg" type="Sprite" parent="body"]
-position = Vector2( 17, 33 )
-rotation = -0.0811751
+position = Vector2( 17.4354, 5.44007 )
+rotation = 0.103512
 z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( 11.8, 20.4 )
@@ -2691,8 +2689,8 @@ region_enabled = true
 region_rect = Rect2( 158, 20, 45, 43 )
 
 [node name="left_hand" type="Sprite" parent="body"]
-position = Vector2( 14.9113, -20.9106 )
-rotation = -1.39626
+position = Vector2( 16, -19 )
+rotation = 0.0507191
 z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( -0.200012, 23.4 )
@@ -2705,16 +2703,16 @@ rotation = 1.3668
 texture = ExtResource( 2 )
 
 [node name="head" type="Sprite" parent="body"]
-position = Vector2( 0.526858, -29.1254 )
-rotation = -0.295367
+position = Vector2( 3.96137, -15.4858 )
+rotation = -0.13996
 texture = ExtResource( 1 )
 offset = Vector2( 2.79999, -29.6 )
 region_enabled = true
 region_rect = Rect2( 65, 11, 83, 70 )
 
 [node name="hat" type="Sprite" parent="body/head"]
-position = Vector2( 0.799988, -51.6 )
-rotation = 0.121512
+position = Vector2( 3.44258, -50.8679 )
+rotation = 0.101436
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 77, 89, 120, 60 )
@@ -2726,16 +2724,16 @@ z_index = -1
 texture = ExtResource( 3 )
 
 [node name="right_hand" type="Sprite" parent="body"]
-position = Vector2( -8.27735, -15.6871 )
-rotation = -1.53543
+position = Vector2( -20.091, -13.1721 )
+rotation = 0.398059
 texture = ExtResource( 1 )
 offset = Vector2( -0.200012, 23.4 )
 region_enabled = true
 region_rect = Rect2( 11, 93, 44, 60.912 )
 
 [node name="right_leg" type="Sprite" parent="body"]
-position = Vector2( -14, 33 )
-rotation = -0.00290789
+position = Vector2( -23.7321, 38.8057 )
+rotation = 2.31103
 z_index = -1
 texture = ExtResource( 1 )
 offset = Vector2( 11.8, 20.4 )

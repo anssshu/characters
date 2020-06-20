@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://objects/kilo/scripts/player.gd" type="Script" id=1]
 [ext_resource path="res://objects/kilo/asset/bubble.png" type="Texture" id=2]
@@ -12,18 +12,19 @@
 [ext_resource path="res://objects/kilo/scripts/fall.gd" type="Script" id=10]
 [ext_resource path="res://objects/kilo/scripts/attack.gd" type="Script" id=11]
 [ext_resource path="res://objects/kilo/scripts/attack_jumping.gd" type="Script" id=12]
-[ext_resource path="res://objects/kilo/scripts/wall_jump.gd" type="Script" id=13]
-[ext_resource path="res://objects/kilo/scripts/wall_slide.gd" type="Script" id=14]
-[ext_resource path="res://objects/kilo/scripts/float.gd" type="Script" id=15]
-[ext_resource path="res://objects/kilo/scripts/swim.gd" type="Script" id=16]
-[ext_resource path="res://objects/kilo/scripts/die.gd" type="Script" id=17]
-[ext_resource path="res://objects/kilo/scripts/hit.gd" type="Script" id=18]
-[ext_resource path="res://objects/kilo/scripts/template.gd" type="Script" id=19]
-[ext_resource path="res://objects/kilo/scripts/controls.gd" type="Script" id=20]
-[ext_resource path="res://objects/kilo/scripts/motion.gd" type="Script" id=21]
-[ext_resource path="res://objects/kilo/scripts/updater.gd" type="Script" id=22]
-[ext_resource path="res://objects/kilo/scripts/collision.gd" type="Script" id=23]
-[ext_resource path="res://objects/kilo/scripts/camera.gd" type="Script" id=24]
+[ext_resource path="res://objects/kilo/scripts/air_dash.gd" type="Script" id=13]
+[ext_resource path="res://objects/kilo/scripts/wall_jump.gd" type="Script" id=14]
+[ext_resource path="res://objects/kilo/scripts/wall_slide.gd" type="Script" id=15]
+[ext_resource path="res://objects/kilo/scripts/float.gd" type="Script" id=16]
+[ext_resource path="res://objects/kilo/scripts/swim.gd" type="Script" id=17]
+[ext_resource path="res://objects/kilo/scripts/die.gd" type="Script" id=18]
+[ext_resource path="res://objects/kilo/scripts/hit.gd" type="Script" id=19]
+[ext_resource path="res://objects/kilo/scripts/template.gd" type="Script" id=20]
+[ext_resource path="res://objects/kilo/scripts/controls.gd" type="Script" id=21]
+[ext_resource path="res://objects/kilo/scripts/motion.gd" type="Script" id=22]
+[ext_resource path="res://objects/kilo/scripts/updater.gd" type="Script" id=23]
+[ext_resource path="res://objects/kilo/scripts/collision.gd" type="Script" id=24]
+[ext_resource path="res://objects/kilo/scripts/camera.gd" type="Script" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 55 )
@@ -56,7 +57,6 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="sprite" type="Node2D" parent="."]
-editor/display_folded = true
 scale = Vector2( 0.6, 0.6 )
 
 [node name="bubble" type="CPUParticles2D" parent="sprite"]
@@ -112,45 +112,52 @@ script = ExtResource( 11 )
 [node name="attack_jumping" type="Node" parent="fsm"]
 script = ExtResource( 12 )
 
-[node name="wall_jump" type="Node" parent="fsm"]
+[node name="air_dash" type="Node" parent="fsm"]
 script = ExtResource( 13 )
 
-[node name="wall_slide" type="Node" parent="fsm"]
+[node name="timer" type="Timer" parent="fsm/air_dash"]
+wait_time = 0.2
+one_shot = true
+
+[node name="wall_jump" type="Node" parent="fsm"]
 script = ExtResource( 14 )
+
+[node name="wall_slide" type="Node" parent="fsm"]
+script = ExtResource( 15 )
 
 [node name="wall_stick_timer" type="Timer" parent="fsm/wall_slide"]
 wait_time = 0.3
 one_shot = true
 
 [node name="float" type="Node" parent="fsm"]
-script = ExtResource( 15 )
-
-[node name="swim" type="Node" parent="fsm"]
 script = ExtResource( 16 )
 
-[node name="die" type="Node" parent="fsm"]
+[node name="swim" type="Node" parent="fsm"]
 script = ExtResource( 17 )
 
-[node name="hit" type="Node" parent="fsm"]
+[node name="die" type="Node" parent="fsm"]
 script = ExtResource( 18 )
+
+[node name="hit" type="Node" parent="fsm"]
+script = ExtResource( 19 )
 
 [node name="hit_timer" type="Timer" parent="fsm/hit"]
 one_shot = true
 
 [node name="template" type="Node" parent="fsm"]
-script = ExtResource( 19 )
-
-[node name="controls" type="Node" parent="."]
 script = ExtResource( 20 )
 
-[node name="motion" type="Node" parent="."]
+[node name="controls" type="Node" parent="."]
 script = ExtResource( 21 )
 
-[node name="updater" type="Node" parent="."]
+[node name="motion" type="Node" parent="."]
 script = ExtResource( 22 )
 
-[node name="collision" type="Node" parent="."]
+[node name="updater" type="Node" parent="."]
 script = ExtResource( 23 )
+
+[node name="collision" type="Node" parent="."]
+script = ExtResource( 24 )
 
 [node name="camera" type="Camera2D" parent="."]
 limit_left = -32
@@ -162,7 +169,7 @@ smoothing_enabled = true
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.8
-script = ExtResource( 24 )
+script = ExtResource( 25 )
 
 [node name="label" type="Label" parent="."]
 margin_left = -2.0
@@ -189,5 +196,6 @@ position = Vector2( 1.2083, -5.88729 )
 enabled = true
 cast_to = Vector2( 0, 10 )
 [connection signal="timeout" from="fsm/slide/slide_timer" to="fsm/slide" method="_on_slide_timer_timeout"]
+[connection signal="timeout" from="fsm/air_dash/timer" to="fsm/air_dash" method="_on_timer_timeout"]
 [connection signal="timeout" from="fsm/wall_slide/wall_stick_timer" to="fsm/wall_slide" method="_on_wall_slide_timer_timeout"]
 [connection signal="timeout" from="fsm/hit/hit_timer" to="fsm/hit" method="_on_hit_timer_timeout"]

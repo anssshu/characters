@@ -9,12 +9,14 @@ extends KinematicBody2D
 
 
 var  gravity  
-var jump_height = 110*2
+var jump_height = 110*2.2
 var jump_time = .35
 #max walk speed
 var walk_speed = 600
 var jump_speed = -300
 var air_speed = 600
+var air_dash_speed = 2000
+var air_dash_count = 0 
 var swim_speed = 500
 var wall_jump_speed 
 var player_accn_time = .4

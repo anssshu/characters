@@ -9,6 +9,7 @@ var up
 var down
 var jump 
 var attack
+var dash
 
 var input = true
 # Called when the node enters the scene tree for the first time.
@@ -19,6 +20,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(delta):
 	if input:
+		dash = Input.is_action_just_pressed("ui_dash")
 		left = Input.is_action_pressed("ui_left")
 		right = Input.is_action_pressed("ui_right")
 		up = Input.is_action_pressed("ui_up")

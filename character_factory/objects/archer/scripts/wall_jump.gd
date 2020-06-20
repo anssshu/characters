@@ -17,11 +17,11 @@ func on_enter(new_state,old_state):
 func on_exit(old_state,new_state):
 	pass
 func state_logic(delta):
-	if player.controls.left :
-		player.velocity.x = -player.AIRSPEED
-	elif player.controls.right :
-		player.velocity.x = player.AIRSPEED
-	else:
+	#if player.controls.left :
+		#player.velocity.x = -player.AIRSPEED
+	#elif player.controls.right :
+		#player.velocity.x = player.AIRSPEED
+	#else:
 		pass
 func transition_logic(delta):
 	#wall jump to fall

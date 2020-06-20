@@ -5,6 +5,7 @@ extends Node
 onready var player = get_parent().get_parent()
 
 func on_enter(new_state,old_state):
+	player.air_dash_count = 0
 	#play animation
 	player.anim.play("idle")
 	#other logic	

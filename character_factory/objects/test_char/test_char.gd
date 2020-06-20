@@ -9,10 +9,10 @@ var g
 var jump_height = 64*4
 var jump_time = .35
 
-var walk_speed = 320
+var walk_speed = 520
 var wall_jump_speed = 320
 var jump_speed = 500
-var wall_speed = 32
+var wall_speed = 320
 var G #= 2*jump_height/pow(jump_time,2)
 #for collision data
 var c 

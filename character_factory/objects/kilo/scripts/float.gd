@@ -4,6 +4,7 @@ extends Node
 onready var player = get_parent().get_parent()
 
 func on_enter(new_state,old_state):
+	player.air_dash_count = 0
 	player.anim.play(new_state)
 	player.gravity = 0#2*player.jump_height/pow(player.jump_time,2)
 	player.velocity.y =0 

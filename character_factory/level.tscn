@@ -8,4 +8,4 @@
 [node name="map" parent="." instance=ExtResource( 1 )]
 
 [node name="kilo" parent="." instance=ExtResource( 2 )]
-position = Vector2( 240.679, 1019.77 )
+position = Vector2( 199.508, 1072.28 )

@@ -5,12 +5,12 @@ var family = "Archer"
 # this is a kinematic player class for declaring all the player parameters
 
 var GRAVITY = 1200.0 
-var jump_height = 320
+var jump_height = 256
 var jump_time = .4
-const WALKSPEED = 600
+const WALKSPEED = 300
 var JUMPSPEED = -700
-const AIRSPEED = 400
-const WALLJUMPSPEED = Vector2(400,-400)
+const AIRSPEED = 600
+var WALLJUMPSPEED = Vector2(600,-600)
 const ACCN = 800
 
 var velocity = Vector2()
@@ -50,6 +50,7 @@ onready var collision = $collision
 func _ready():
 	GRAVITY = 2*jump_height/pow(jump_time,2)
 	JUMPSPEED = -GRAVITY*jump_time
+	WALLJUMPSPEED = Vector2(2*WALKSPEED,JUMPSPEED)
 	#set player the initial state
 	fsm.set_state("fall")
 	$label.set_text(str(fsm.state))
