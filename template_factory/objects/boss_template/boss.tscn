@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://objects/boss_template/scripts/boss.gd" type="Script" id=1]
+[ext_resource path="res://objects/boss_template/scripts/fsm.gd" type="Script" id=2]
+[ext_resource path="res://objects/boss_template/scripts/ai.gd" type="Script" id=3]
+[ext_resource path="res://objects/boss_template/scripts/template.gd" type="Script" id=4]
+[ext_resource path="res://objects/boss_template/scripts/idle.gd" type="Script" id=5]
+[ext_resource path="res://objects/boss_template/scripts/die.gd" type="Script" id=6]
+[ext_resource path="res://objects/boss_template/scripts/attack_others.gd" type="Script" id=7]
+[ext_resource path="res://objects/boss_template/place_holder.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "die",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 128.945, 134.492 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 157.417, 147.09 )
+
+[node name="boss" type="KinematicBody2D" groups=[
+"boss",
+"enemy",
+]]
+script = ExtResource( 1 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "die"
+offset = Vector2( 0.790344, -193.995 )
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2( -14.1422, -147.785 )
+shape = SubResource( 2 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="idle" type="Node" parent="fsm"]
+script = ExtResource( 5 )
+
+[node name="die" type="Node" parent="fsm"]
+script = ExtResource( 6 )
+
+[node name="template" type="Node" parent="fsm"]
+script = ExtResource( 4 )
+
+[node name="attack_others" type="Area2D" parent="."]
+position = Vector2( 60.5811, 44.5449 )
+script = ExtResource( 7 )
+
+[node name="attack_collider" type="CollisionShape2D" parent="attack_others"]
+position = Vector2( -72.1628, -191.543 )
+shape = SubResource( 3 )
+
+[node name="ai" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="ai_timer" type="Timer" parent="ai"]
+
+[node name="left" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -20, 0 )
+
+[node name="right" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 20, 0 )
+
+[node name="down" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 20 )
+
+[node name="label" type="Label" parent="."]
+margin_left = -42.0
+margin_top = -356.0
+margin_right = 41.0
+margin_bottom = -323.0
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
