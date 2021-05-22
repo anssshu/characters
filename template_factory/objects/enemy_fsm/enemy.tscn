@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://objects/enemy_fsm/scripts/state1.gd" type="Script" id=1]
+[ext_resource path="res://objects/enemy_fsm/scripts/state2.gd" type="Script" id=2]
+[ext_resource path="res://objects/enemy_fsm/scripts/enemy.gd" type="Script" id=3]
+[ext_resource path="res://objects/enemy_fsm/scripts/fsm.gd" type="Script" id=4]
+[ext_resource path="res://objects/enemy_fsm/anim.tscn" type="PackedScene" id=5]
+
+[node name="enemy" type="Node2D"]
+position = Vector2( 285.428, 176.051 )
+script = ExtResource( 3 )
+
+[node name="fsm" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="state1" type="Node" parent="fsm"]
+script = ExtResource( 1 )
+
+[node name="state2" type="Node" parent="fsm"]
+script = ExtResource( 2 )
+
+[node name="anim" parent="." instance=ExtResource( 5 )]
+
+[node name="label" type="Label" parent="."]
+margin_left = -40.4543
+margin_top = -69.6713
+margin_right = -0.454285
+margin_bottom = -55.6713
+__meta__ = {
+"_edit_use_anchors_": false
+}
