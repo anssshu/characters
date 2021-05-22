@@ -1,0 +1,133 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://hero_atlas.svg" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.21965, -28.2236 ), Vector2( -2.21965, -24.2236 ), Vector2( -2.21965, -28.2236 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -13.7283, -59.9716 ), Vector2( -13.7283, -57.9716 ), Vector2( -13.7283, -59.9716 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("hand2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6.51105, -65.1307 ), Vector2( 6.51105, -63.1307 ), Vector2( 6.51105, -65.1307 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.02911, -66.7181 ), Vector2( 1.34931, -64.9343 ), Vector2( -1.02911, -66.7181 ) ]
+}
+
+[node name="hero" type="Node2D"]
+
+[node name="hand2" type="Sprite" parent="."]
+position = Vector2( 6.51105, -64.1104 )
+rotation = 0.735386
+texture = ExtResource( 1 )
+offset = Vector2( 22.0619, 12.6125 )
+region_enabled = true
+region_rect = Rect2( 9, 134, 51, 45 )
+
+[node name="leg" type="Sprite" parent="."]
+position = Vector2( -10.1567, -31.7953 )
+texture = ExtResource( 1 )
+offset = Vector2( 4.72969, 17.2771 )
+region_enabled = true
+region_rect = Rect2( 76, 135, 28, 48 )
+
+[node name="leg2" type="Sprite" parent="."]
+position = Vector2( 2.1457, -33.3827 )
+texture = ExtResource( 1 )
+offset = Vector2( 4.42733, 15.8645 )
+region_enabled = true
+region_rect = Rect2( 76, 135, 28, 48 )
+
+[node name="body" type="Sprite" parent="."]
+position = Vector2( -2.21965, -26.1829 )
+texture = ExtResource( 1 )
+offset = Vector2( 0.79268, -23.2946 )
+region_enabled = true
+region_rect = Rect2( 145, 124, 45, 60 )
+
+[node name="hand" type="Sprite" parent="."]
+position = Vector2( -13.7283, -58.9513 )
+rotation = 0.770092
+z_index = 2
+texture = ExtResource( 1 )
+offset = Vector2( 18.3013, 10.4534 )
+region_enabled = true
+region_rect = Rect2( 9, 134, 51, 45 )
+
+[node name="dager" type="Sprite" parent="hand"]
+position = Vector2( 29.4438, 18.6351 )
+rotation = 0.432115
+z_as_relative = false
+texture = ExtResource( 1 )
+offset = Vector2( -1.59558, -32.5082 )
+region_enabled = true
+region_rect = Rect2( 110.789, 99.4737, 25.2632, 86.3158 )
+
+[node name="head" type="Sprite" parent="."]
+position = Vector2( 0.184287, -65.808 )
+texture = ExtResource( 1 )
+offset = Vector2( -0.240394, -32.4394 )
+region_enabled = true
+region_rect = Rect2( 119, 4, 85, 84 )
+
+[node name="hair" type="Sprite" parent="head"]
+position = Vector2( -18.6117, -59.0785 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 121, 86 )
+
+[node name="eye" type="Sprite" parent="head"]
+position = Vector2( -3.53139, -33.68 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 87, 34, 28 )
+
+[node name="eye2" type="Sprite" parent="head"]
+position = Vector2( 24.2482, -33.68 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 87, 34, 28 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/idle = SubResource( 1 )
